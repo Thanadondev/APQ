@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
-import { Sword, Target, Flame, Skull } from 'lucide-react';
 
 const classes = [
   {
     id: 'swordsman',
-    icon: Sword,
+    image: '/images/swordsman.png',
     name: { en: 'Swordsman', th: 'นักดาบ' },
     desc: { en: 'A fearless warrior who charges the front line.', th: 'นักรบไร้พ่ายผู้บุกตะลุยแนวหน้า' },
     color: 'from-[#ac3149] to-[#f76a80]',
@@ -14,7 +13,7 @@ const classes = [
   },
   {
     id: 'archer',
-    icon: Target,
+    image: '/images/archer.png',
     name: { en: 'Archer', th: 'นักธนู' },
     desc: { en: 'A sharp-eyed marksman striking from afar.', th: 'พรานธนูตาเหยี่ยวที่ลอบจู่โจมจากระยะไกล' },
     color: 'from-secondary to-secondary-container',
@@ -24,7 +23,7 @@ const classes = [
   },
   {
     id: 'mage',
-    icon: Flame,
+    image: '/images/mage.png',
     name: { en: 'Mage', th: 'นักเวทย์' },
     desc: { en: 'A master of arcane arts who bends reality.', th: 'จอมเวทย์ผู้บิดเบือนกฎแห่งความจริง' },
     color: 'from-primary to-primary-container',
@@ -34,7 +33,7 @@ const classes = [
   },
   {
     id: 'assassin',
-    icon: Skull,
+    image: '/images/assassin.png',
     name: { en: 'Assassin', th: 'นักฆ่า' },
     desc: { en: 'A silent shadow delivering lethal precision.', th: 'เงาเงียบผู้สังหารด้วยความแม่นยำ' },
     color: 'from-[#4b386e] to-[#69558e]',
@@ -65,10 +64,10 @@ export default function CharacterSelect({ lang, onSelect }) {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {classes.map((cls, i) => {
-          const Icon = cls.icon;
           return (
             <motion.button
               key={cls.id}
+              data-testid={`class-btn-${cls.id}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -77,8 +76,12 @@ export default function CharacterSelect({ lang, onSelect }) {
               onClick={() => onSelect(cls)}
               className={`group relative flex flex-col items-center p-6 md:p-8 rounded-[2rem] bg-surface-container-lowest/90 backdrop-blur-md border ${cls.border} hover:shadow-2xl hover:${cls.glow} transition-all duration-300 cursor-pointer`}
             >
-              <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full ${cls.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                <Icon className="w-8 h-8 md:w-10 md:h-10 text-on-surface" />
+              <div className={`w-24 h-24 md:w-32 md:h-32 rounded-2xl ${cls.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform overflow-hidden p-2`}>
+                <img 
+                  src={cls.image} 
+                  alt={cls.name[lang]} 
+                  className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                />
               </div>
 
               <h3 className="text-lg md:text-xl font-chakra font-bold text-on-surface mb-1">

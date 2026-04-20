@@ -67,48 +67,45 @@ const characterDB = {
   }
 };
 
-const getAICharacterMatch = async (mbtiType, traits, lang) => {
+const getAIPersonalityAnalysis = async (mbtiType, traits, lang) => {
+  const requestedLang = lang === 'th' ? 'th' : 'en';
+  const localMatch = characterDB[mbtiType] ? characterDB[mbtiType][requestedLang] : null;
+
+  let aiSummary = lang === 'th' 
+    ? "วิเคราะห์บุคลิกภาพของคุณผ่านเนตรแห่งเทพพยากรณ์..." 
+    : "Analyzing your soul through the Oracle's eye...";
+
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const requestedLanguage = lang === 'th' ? 'Thai' : 'English';
-    
-    const prompt = `Based on the MBTI type "${mbtiType}" and the traits: "${traits}", which specific famous anime character is this user most like? 
-    Please respond STRICTLY in ${requestedLanguage}.
-    Respond ONLY with a raw JSON object (no markdown, no code blocks) containing exactly these properties:
-    - "characterName" (String): The name of the character.
-    - "animeTitle" (String): The anime series the character is from.
-    - "reason" (String): A short paragraph (2-3 sentences) explaining why the user resembles them.`;
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const languageName = lang === 'th' ? 'Thai' : 'English';
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const prompt = `The user is MBTI type "${mbtiType}" with these internal traits: "${traits}".
+    Please provide a profound and inspiring 2-3 sentence summary of their personality and soul. 
+    Focus on their strengths and hidden potential.
+    Expectation: A wise Oracle-like analysis.
+    Respond strictly in ${languageName}.
+    Format: ONLY return a JSON object like this: {"summary": "your analysis here"}`;
+
     const result = await model.generateContent(prompt);
-    const aiText = result.response.text().trim();
+    const text = result.response.text().replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    const aiData = JSON.parse(text);
+    aiSummary = aiData.summary;
 
-    const cleanedText = aiText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-    return JSON.parse(cleanedText);
   } catch (error) {
-    // Check if it's a quota error (429) or other API limit
-    const isQuotaError = error.message?.includes('429') || error.message?.toLowerCase().includes('quota');
-    
-    if (isQuotaError) {
-      console.warn('⚠️ Gemini Quota Exceeded. Switching to Local Character DB...');
-    } else {
-      console.error('❌ AI Service Error:', error.message);
-    }
-
-    const requestedLang = lang === 'th' ? 'th' : 'en';
-    
-    // Return high-quality local data if AI fails
-    if (characterDB[mbtiType]) {
-      return {
-        ...characterDB[mbtiType][requestedLang],
-        isLocalMatch: true // Tag it so we know it's from our DB
-      };
-    }
-    return null;
+    console.warn('⚠️ AI Summary unavailable, using default archetype descriptions.', error.message);
+    aiSummary = lang === 'th' 
+      ? "นิสัยของคุณโดดเด่นด้วยวิสัยทัศน์ที่กว้างไกลและความเป็นตัวของตัวเองที่เป็นเอกลักษณ์"
+      : "Your personality is marked by profound vision and a unique sense of self.";
   }
+
+  return {
+    characterMatch: localMatch,
+    aiSummary: aiSummary
+  };
 };
 
 module.exports = {
-  getAICharacterMatch,
+  getAIPersonalityAnalysis,
   characterDB
 };

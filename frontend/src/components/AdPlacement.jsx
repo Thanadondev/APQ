@@ -39,7 +39,7 @@ export default function AdPlacement({ type = 'banner', lang = 'en' }) {
         <div className="flex flex-col items-center justify-center text-white/20 p-4">
           <Info className="w-5 h-5 mb-2 opacity-50" />
           <p className="text-[10px] uppercase tracking-widest font-chakra font-bold">
-            {lang === 'en' ? 'Sponsor / Advertising Area' : 'พื้นที่โฆษณา / สปอนเซอร์'}
+            {lang === 'en' ? 'Sponsor/Advertising Area' : 'พื้นที่โฆษณา/สปอนเซอร์'}
           </p>
         </div>
 

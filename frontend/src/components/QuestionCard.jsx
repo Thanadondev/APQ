@@ -24,7 +24,10 @@ export default function QuestionCard({ question, current, total, onSelect, lang 
       transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
       className="game-card rounded-[3rem] p-10 relative overflow-hidden"
     >
-      <div className="absolute top-6 left-10 text-primary font-chakra font-bold text-sm tracking-widest opacity-60">
+      <div 
+        data-testid="question-counter"
+        className="absolute top-6 left-10 text-primary font-chakra font-bold text-sm tracking-widest opacity-60"
+      >
         QUESTION {current} / {total}
       </div>
       

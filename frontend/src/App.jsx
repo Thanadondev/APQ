@@ -97,7 +97,7 @@ function App() {
               >
                 {lang === 'en' ? '⚔️ Start Adventure' : '⚔️ เริ่มการผจญภัย'}
               </button>
-              
+
               {/* Home Banner Ad */}
               <div className="w-full mt-4">
                 <AdPlacement type="banner" lang={lang} />
@@ -138,7 +138,7 @@ function App() {
             className="flex items-center gap-2 text-xs md:text-sm font-manrope text-white/80 hover:text-primary transition-colors bg-white/5 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 shadow-lg cursor-pointer"
           >
             <Mail className="w-4 h-4" />
-            <span className="font-bold">{lang === 'en' ? 'Advertising:' : 'ติดต่องาน/โฆษณา:'}</span>
+            <span className="font-bold">{lang === 'en' ? 'Advertising' : 'ติดต่องาน/โฆษณา'}</span>
           </a>
           <p className="text-[10px] uppercase tracking-[0.2em] font-chakra text-white/30 mt-2">
             © 2026 APQ PROJECT • BUILT BY ANTIGRAVITY

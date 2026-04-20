@@ -20,13 +20,15 @@ test.describe('Anime Personality Quiz - Full Game Flow', () => {
     await page.getByRole('button', { name: /Start Adventure/i }).click();
 
     // 5. Select Character Class: Mage
-    await page.getByRole('button', { name: /Mage/i }).click();
+    await page.getByTestId('class-btn-mage').click();
 
     // 6. Answer 16 Questions
     // We'll click "Strongly Agree" for every question to speed through
     for (let i = 1; i <= 16; i++) {
       // Wait for question to be visible
-      await expect(page.locator(`text=${i} / 16`)).toBeVisible();
+      const counter = page.getByTestId('question-counter');
+      await expect(counter).toBeVisible({ timeout: 10000 });
+      await expect(counter).toContainText(`${i} / 16`);
       
       // Check if boss HP is present
       const hpText = await page.locator('span:has-text("HP")').innerText();

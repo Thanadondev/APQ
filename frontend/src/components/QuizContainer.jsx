@@ -26,7 +26,7 @@ export default function QuizContainer({ onComplete, lang, playerClass }) {
     }
 
     const newAnswers = [...answers, answerObj];
-    
+
     if (currentIndex < questions.length - 1) {
       setAnswers(newAnswers);
       setCurrentIndex(currentIndex + 1);
@@ -45,7 +45,7 @@ export default function QuizContainer({ onComplete, lang, playerClass }) {
 
   const processResults = async (finalAnswers) => {
     const axisScores = { EI: 0, SN: 0, TF: 0, JP: 0 };
-    
+
     finalAnswers.forEach(ans => {
       axisScores[ans.axis] += ans.score;
     });
@@ -72,7 +72,8 @@ export default function QuizContainer({ onComplete, lang, playerClass }) {
           archetype,
           axisScores,
           playerClass,
-          aiMatch: data.match
+          characterMatch: data.match,
+          aiSummary: data.aiSummary
         });
       }
     } catch (error) {
@@ -88,7 +89,7 @@ export default function QuizContainer({ onComplete, lang, playerClass }) {
         }
       });
     }
-    
+
     setIsLoading(false);
   };
 
@@ -113,9 +114,11 @@ export default function QuizContainer({ onComplete, lang, playerClass }) {
       {/* Player Class Badge */}
       {playerClass && (
         <div className="flex justify-center mb-4">
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${playerClass.bg} border ${playerClass.border}`}>
-            <playerClass.icon className="w-4 h-4 text-on-surface" />
-            <span className="text-sm font-bold font-chakra text-on-surface">{playerClass.name[lang]}</span>
+          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${playerClass.bg} border ${playerClass.border} backdrop-blur-sm`}>
+            <div className="w-6 h-6 overflow-hidden rounded-md bg-white/10 flex items-center justify-center">
+              <img src={playerClass.image} alt="" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-xs font-bold font-chakra text-on-surface uppercase tracking-wider">{playerClass.name[lang]}</span>
           </div>
         </div>
       )}
@@ -131,7 +134,7 @@ export default function QuizContainer({ onComplete, lang, playerClass }) {
       {/* Question Card or Defeated State */}
       {!bossDefeated && (
         <AnimatePresence mode="wait">
-          <QuestionCard 
+          <QuestionCard
             key={currentQuestion.id}
             question={currentQuestion}
             current={currentIndex + 1}
