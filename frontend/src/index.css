@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #f8f9fa;
+  --color-on-background: #2e3335;
+  --color-surface: #f8f9fa;
+  --color-on-surface: #2e3335;
+  --color-surface-variant: #dee3e5;
+  --color-on-surface-variant: #5a6062;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f5;
+  --color-surface-container: #ebeef0;
+  --color-surface-container-high: #e5e9eb;
+  --color-surface-container-highest: #dee3e5;
+  --color-primary: #69558e;
+  --color-on-primary: #fef7ff;
+  --color-primary-container: #d6beff;
+  --color-on-primary-container: #4b386e;
+  --color-secondary: #006c53;
+  --color-on-secondary: #e5fff2;
+  --color-secondary-container: #98ffd9;
+  --color-on-secondary-container: #00634b;
+  --color-tertiary: #7c5649;
+  --color-error: #ac3149;
+  --color-outline: #767c7e;
+  --color-outline-variant: #aeb3b5;
+
+  --font-chakra: "Chakra Petch", sans-serif;
+  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    font-family: var(--font-manrope);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-chakra);
+    letter-spacing: -0.02em;
+  }
+}

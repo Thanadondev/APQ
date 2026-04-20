@@ -1,0 +1,18 @@
+export const archetypes = {
+  INTJ: { title: "The Shadow Strategist", thaiTitle: "เสนาธิการเงา", type: "INTJ", traits: "วางแผนล้ำลึก มองการณ์ไกล มักเป็นผู้อยู่เบื้องหลังชัยชนะ", stats: { int: 95, pwr: 70, spd: 80, emp: 40 } },
+  INTP: { title: "The Eccentric Scholar", thaiTitle: "นักปราชญ์ผู้วิเคราะห์", type: "INTP", traits: "ชอบไขปริศนาที่ซับซ้อน โลกส่วนตัวสูง และมีเหตุผลแบบสุดโต่ง", stats: { int: 100, pwr: 40, spd: 50, emp: 30 } },
+  ENTJ: { title: "The Ambitious Leader", thaiTitle: "ผู้นำผู้ทะเยอทะยาน", type: "ENTJ", traits: "มีพลังในการสั่งการ เป้าหมายชัดเจน พร้อมบดขยี้อุปสรรค", stats: { int: 85, pwr: 90, spd: 75, emp: 45 } },
+  ENTP: { title: "The Mischievous Inventor", thaiTitle: "นักประดิษฐ์จอมกวน", type: "ENTP", traits: "ฉลาดเป็นกรด ชอบท้าทายกฎเกณฑ์ และสร้างความปั่นป่วนที่สร้างสรรค์", stats: { int: 90, pwr: 60, spd: 85, emp: 50 } },
+  INFJ: { title: "The Spiritual Guide", thaiTitle: "ผู้ชี้นำจิตวิญญาณ", type: "INFJ", traits: "มีสัญชาตญาณหยั่งรู้ เข้าใจคนอื่นอย่างลึกซึ้ง มีความลึกลับ", stats: { int: 80, pwr: 60, spd: 65, emp: 100 } },
+  INFP: { title: "The Gentle Dreamer", thaiTitle: "นักฝันผู่อ่อนโยน", type: "INFP", traits: "ยึดมั่นในอุดมการณ์สูง มีจินตนาการกว้างไกล และอ่อนโยนต่อโลก", stats: { int: 75, pwr: 50, spd: 60, emp: 95 } },
+  ENFJ: { title: "The Inspirational Hero", thaiTitle: "วีรบุรุษผู้สร้างแรงบันดาลใจ", type: "ENFJ", traits: "มีเสน่ห์ดึงดูดผู้คน ชอบช่วยเหลือและผลักดันผู้อื่นให้เติบโต", stats: { int: 70, pwr: 80, spd: 75, emp: 90 } },
+  ENFP: { title: "The Cheerful Explorer", thaiTitle: "นักสำรวจผู้ร่าเริง", type: "ENFP", traits: "พลังงานเหลือล้น มองโลกในแง่ดี และเป็นผู้สร้างสีสันในทีม", stats: { int: 65, pwr: 60, spd: 85, emp: 85 } },
+  ISTJ: { title: "The Strict Rule-Follower", thaiTitle: "ผู้คุมกฎระเบียบ", type: "ISTJ", traits: "จริงจัง รักหน้าที่ ทำทุกอย่างตามแบบแผนและถูกต้องแม่นยำ", stats: { int: 75, pwr: 70, spd: 60, emp: 50 } },
+  ISFJ: { title: "The Loyal Guardian", thaiTitle: "ผู้พิทักษ์ผู้ภักดี", type: "ISFJ", traits: "อดทน เสียสละ ดูแลคนรอบข้างเหมือนเป็นแม่ทัพหลังของทีม", stats: { int: 60, pwr: 75, spd: 55, emp: 85 } },
+  ESTJ: { title: "The Decisive Commander", thaiTitle: "ผู้บัญชาการเด็ดขาด", type: "ESTJ", traits: "บริหารจัดการเก่ง เน้นประสิทธิภาพและกฎเกณฑ์ที่ชัดเจน", stats: { int: 70, pwr: 85, spd: 65, emp: 40 } },
+  ESFJ: { title: "The Friendship Coordinator", thaiTitle: "ผู้ประสานมิตรภาพ", type: "ESFJ", traits: "เข้าสังคมเก่ง ดูแลความรู้สึกคนในกลุ่มให้มีความสุขเสมอ", stats: { int: 55, pwr: 60, spd: 70, emp: 90 } },
+  ISTP: { title: "The Skilled Hunter", thaiTitle: "นักล่าฝีมือฉกาจ", type: "ISTP", traits: "พูดน้อย ต่อยหนัก ถนัดการใช้เครื่องมือและแก้ปัญหาเฉพาะหน้า", stats: { int: 70, pwr: 80, spd: 90, emp: 30 } },
+  ISFP: { title: "The Wandering Artist", thaiTitle: "ศิลปินพเนจร", type: "ISFP", traits: "รักอิสระ มีรสนิยมทางศิลปะสูง และแสดงออกผ่านการกระทำ", stats: { int: 55, pwr: 65, spd: 75, emp: 70 } },
+  ESTP: { title: "The Action-Type Fighter", thaiTitle: "ยอดนักสู้สายบู๊", type: "ESTP", traits: "กล้าเสี่ยง รักความตื่นเต้น และรับมือกับวิกฤตได้ดีเยี่ยม", stats: { int: 60, pwr: 95, spd: 90, emp: 45 } },
+  ESFP: { title: "The Charming Star", thaiTitle: "ดาราเจ้าเสน่ห์", type: "ESFP", traits: "รักสนุก อยู่ที่ไหนก็มีแต่เสียงหัวเราะ และชอบเป็นจุดสนใจ", stats: { int: 50, pwr: 55, spd: 85, emp: 80 } },
+};
