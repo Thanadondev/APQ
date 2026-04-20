@@ -3,7 +3,8 @@ import QuizContainer from './components/QuizContainer';
 import ResultDisplay from './components/ResultDisplay';
 import ArchetypesGallery from './components/ArchetypesGallery';
 import CharacterSelect from './components/CharacterSelect';
-import { Globe, Users } from 'lucide-react';
+import AdPlacement from './components/AdPlacement';
+import { Globe, Users, Mail } from 'lucide-react';
 
 function App() {
   const [result, setResult] = useState(null);
@@ -26,16 +27,23 @@ function App() {
     setView('home');
   };
 
+  const copyEmail = (e) => {
+    // We still allow the mailto to happen, but also copy to clipboard
+    navigator.clipboard.writeText('thanadon.hcyp@gmail.com');
+    alert(lang === 'en' ? 'Email copied to clipboard!' : 'คัดลอกอีเมลลงคลิปบอร์ดแล้ว!');
+  };
+
   return (
     <div className="min-h-screen text-on-background flex flex-col items-center justify-center p-4 relative overflow-hidden">
+
       {/* 8-bit Castle Background */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/castle-bg.png')" }}></div>
       <div className="absolute inset-0 bg-background/80 backdrop-blur-[1px]"></div>
-      <div className="scanline"></div>
+      <div className="scanline pointer-events-none"></div>
 
       {/* Decorative background blobs */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob pointer-events-none"></div>
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 pointer-events-none"></div>
 
       {/* Top buttons */}
       <div className="absolute top-6 right-6 z-20 flex gap-3">
@@ -57,6 +65,14 @@ function App() {
           <Globe className="w-4 h-4" />
           <span className="text-sm font-bold font-chakra uppercase tracking-wider">{lang === 'en' ? 'EN' : 'TH'}</span>
         </button>
+      </div>
+
+      {/* Side Ads (Desktop Only) */}
+      <div className="hidden lg:block fixed left-6 top-1/2 -translate-y-1/2 w-48 z-10">
+        <AdPlacement type="sidebar" lang={lang} />
+      </div>
+      <div className="hidden lg:block fixed right-6 top-1/2 -translate-y-1/2 w-48 z-10">
+        <AdPlacement type="sidebar" lang={lang} />
       </div>
 
       <div className="z-10 w-full relative">
@@ -81,6 +97,11 @@ function App() {
               >
                 {lang === 'en' ? '⚔️ Start Adventure' : '⚔️ เริ่มการผจญภัย'}
               </button>
+              
+              {/* Home Banner Ad */}
+              <div className="w-full mt-4">
+                <AdPlacement type="banner" lang={lang} />
+              </div>
             </div>
           </div>
         )}
@@ -106,6 +127,24 @@ function App() {
           </div>
         )}
       </div>
+
+      {/* Footer: Advertising Contact */}
+      <footer className="relative z-10 mt-12 py-8 opacity-60 hover:opacity-100 transition-opacity">
+        <div className="flex flex-col items-center gap-2">
+          <div className="h-px w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-4"></div>
+          <a
+            href="mailto:thanadon.hcyp@gmail.com"
+            onClick={copyEmail}
+            className="flex items-center gap-2 text-xs md:text-sm font-manrope text-white/80 hover:text-primary transition-colors bg-white/5 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 shadow-lg cursor-pointer"
+          >
+            <Mail className="w-4 h-4" />
+            <span className="font-bold">{lang === 'en' ? 'Advertising:' : 'ติดต่องาน/โฆษณา:'}</span>
+          </a>
+          <p className="text-[10px] uppercase tracking-[0.2em] font-chakra text-white/30 mt-2">
+            © 2026 APQ PROJECT • BUILT BY ANTIGRAVITY
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -27,11 +27,17 @@ app.use('/api', quizRoutes);
 const distPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(distPath));
 
-// Catch-all route for SPA (React)
-app.get('*', (req, res) => {
+// Catch-all route for SPA (React) - Using middleware for maximum compatibility
+app.use((req, res, next) => {
+  // If it's an API request, let it go to the routes (though it should have been handled above)
+  if (req.url.startsWith('/api')) {
+    return next();
+  }
+  
+  // Otherwise, serve the frontend
   res.sendFile(path.join(distPath, 'index.html'), (err) => {
     if (err) {
-      // If index.html doesn't exist (e.g. dev mode), show a simple message
+      // Fallback if build not found
       res.status(200).send('API is running. (Frontend build not found)');
     }
   });

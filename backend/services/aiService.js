@@ -86,9 +86,25 @@ const getAICharacterMatch = async (mbtiType, traits, lang) => {
     const cleanedText = aiText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleanedText);
   } catch (error) {
-    console.warn('AI Service Error:', error.message);
+    // Check if it's a quota error (429) or other API limit
+    const isQuotaError = error.message?.includes('429') || error.message?.toLowerCase().includes('quota');
+    
+    if (isQuotaError) {
+      console.warn('⚠️ Gemini Quota Exceeded. Switching to Local Character DB...');
+    } else {
+      console.error('❌ AI Service Error:', error.message);
+    }
+
     const requestedLang = lang === 'th' ? 'th' : 'en';
-    return characterDB[mbtiType] ? characterDB[mbtiType][requestedLang] : null;
+    
+    // Return high-quality local data if AI fails
+    if (characterDB[mbtiType]) {
+      return {
+        ...characterDB[mbtiType][requestedLang],
+        isLocalMatch: true // Tag it so we know it's from our DB
+      };
+    }
+    return null;
   }
 };
 

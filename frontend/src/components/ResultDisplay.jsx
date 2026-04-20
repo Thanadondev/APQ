@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
-import { Sparkles, Crown, Share2, Trophy, ShieldX } from 'lucide-react';
+import { Sparkles, Crown, Share2, Trophy, ShieldX, MessageSquare } from 'lucide-react';
+import AdPlacement from './AdPlacement';
 
 function AxisBar({ leftLabel, rightLabel, score, maxScore, delay, lang }) {
   // score > 0 means left side wins, score < 0 means right side wins
@@ -204,6 +205,11 @@ export default function ResultDisplay({ result, resetQuiz, lang }) {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Result Page Ad Slot */}
+      <div className="mb-8">
+        <AdPlacement type="banner" lang={lang} />
       </div>
 
       {/* Action Buttons */}
