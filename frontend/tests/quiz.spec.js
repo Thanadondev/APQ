@@ -49,7 +49,7 @@ test.describe('Anime Personality Quiz - Full Game Flow', () => {
 
     // 9. Verify result components
     await expect(page.locator('.recharts-surface')).toBeVisible(); // Radar chart (SVG)
-    await expect(page.getByText(/Winner!/i).first()).toBeVisible(); // Winning axis bars (pick first one)
+    await expect(page.getByText(/Winner/i).first()).toBeVisible(); // Winning axis bars (pick first one)
     await expect(page.getByText(/AI Resonance Match/i)).toBeVisible();
     
     // 10. Test Share Button

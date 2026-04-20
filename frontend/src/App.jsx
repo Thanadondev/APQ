@@ -30,7 +30,8 @@ function App() {
     <div className="min-h-screen text-on-background flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* 8-bit Castle Background */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/castle-bg.png')" }}></div>
-      <div className="absolute inset-0 bg-background/75 backdrop-blur-[2px]"></div>
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-[1px]"></div>
+      <div className="scanline"></div>
 
       {/* Decorative background blobs */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>

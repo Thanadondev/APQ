@@ -15,38 +15,40 @@ function AxisBar({ leftLabel, rightLabel, score, maxScore, delay, lang }) {
       transition={{ duration: 0.5, delay }}
       className="mb-5"
     >
-      <div className="flex justify-between items-center mb-2">
-        <div className={`flex items-center gap-1.5 font-chakra font-bold text-sm ${leftWins ? 'text-primary' : 'text-on-surface-variant'}`}>
-          {leftWins && <Trophy className="w-4 h-4 text-primary" />}
-          {!leftWins && <ShieldX className="w-4 h-4 text-on-surface-variant/50" />}
+      <div className="flex justify-between items-center mb-1.5 px-1">
+        <div className={`flex items-center gap-2 font-chakra font-bold text-sm ${leftWins ? 'text-primary' : 'text-on-surface-variant'}`}>
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${leftWins ? 'bg-primary/20' : 'bg-surface-variant/20'}`}>
+            {leftWins ? <Trophy className="w-4 h-4" /> : <ShieldX className="w-4 h-4 opacity-30" />}
+          </div>
           <span>{leftLabel}</span>
         </div>
-        <div className={`flex items-center gap-1.5 font-chakra font-bold text-sm ${!leftWins ? 'text-secondary' : 'text-on-surface-variant'}`}>
+        <div className={`flex items-center gap-2 font-chakra font-bold text-sm text-right ${!leftWins ? 'text-secondary' : 'text-on-surface-variant'}`}>
           <span>{rightLabel}</span>
-          {!leftWins && <Trophy className="w-4 h-4 text-secondary" />}
-          {leftWins && <ShieldX className="w-4 h-4 text-on-surface-variant/50" />}
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${!leftWins ? 'bg-secondary/20' : 'bg-surface-variant/20'}`}>
+            {!leftWins ? <Trophy className="w-4 h-4" /> : <ShieldX className="w-4 h-4 opacity-30" />}
+          </div>
         </div>
       </div>
-      <div className="h-4 bg-surface-container-high rounded-full overflow-hidden relative flex">
+      <div className="h-3 bg-surface-container-high rounded-full overflow-hidden relative flex border border-outline-variant/10">
         <motion.div
           initial={{ width: '50%' }}
           animate={{ width: `${leftPercent}%` }}
           transition={{ duration: 1.2, delay: delay + 0.2, ease: [0.34, 1.56, 0.64, 1] }}
-          className={`h-full rounded-l-full ${leftWins ? 'bg-gradient-to-r from-primary to-primary-container' : 'bg-surface-container-highest'}`}
+          className={`h-full ${leftWins ? 'bg-gradient-to-r from-primary to-primary-container shadow-[0_0_10px_rgba(105,85,142,0.3)]' : 'bg-surface-container-highest'}`}
         />
         <motion.div
           initial={{ width: '50%' }}
           animate={{ width: `${100 - leftPercent}%` }}
           transition={{ duration: 1.2, delay: delay + 0.2, ease: [0.34, 1.56, 0.64, 1] }}
-          className={`h-full rounded-r-full ${!leftWins ? 'bg-gradient-to-l from-secondary to-secondary-container' : 'bg-surface-container-highest'}`}
+          className={`h-full ${!leftWins ? 'bg-gradient-to-l from-secondary to-secondary-container shadow-[0_0_10px_rgba(172,49,73,0.3)]' : 'bg-surface-container-highest'}`}
         />
       </div>
-      <div className="flex justify-between mt-1">
-        <span className={`text-xs font-manrope ${leftWins ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>
-          {leftWins ? (lang === 'en' ? 'Winner!' : 'ชนะ!') : ''}
+      <div className="flex justify-between mt-1 px-1">
+        <span className={`text-[10px] uppercase tracking-tighter font-black ${leftWins ? 'text-primary' : 'text-transparent'}`}>
+          ✓ Winner
         </span>
-        <span className={`text-xs font-manrope ${!leftWins ? 'text-secondary font-bold' : 'text-on-surface-variant'}`}>
-          {!leftWins ? (lang === 'en' ? 'Winner!' : 'ชนะ!') : ''}
+        <span className={`text-[10px] uppercase tracking-tighter font-black ${!leftWins ? 'text-secondary' : 'text-transparent'}`}>
+          Winner ✓
         </span>
       </div>
     </motion.div>

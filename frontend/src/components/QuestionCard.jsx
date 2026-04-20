@@ -22,14 +22,14 @@ export default function QuestionCard({ question, current, total, onSelect, lang 
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 1.05, y: -20 }}
       transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
-      className="bg-surface-container-lowest/80 backdrop-blur-md rounded-[3rem] p-8 shadow-[0_20px_40px_rgba(46,51,53,0.05)] border border-outline-variant/15 relative"
+      className="game-card rounded-[3rem] p-10 relative overflow-hidden"
     >
-      <div className="absolute top-4 left-8 text-primary font-bold text-sm tracking-widest">
-        {current} / {total}
+      <div className="absolute top-6 left-10 text-primary font-chakra font-bold text-sm tracking-widest opacity-60">
+        QUESTION {current} / {total}
       </div>
       
-      <h3 className="text-xl md:text-2xl font-chakra mt-8 mb-8 text-on-surface leading-normal text-center min-h-[100px] flex items-center justify-center font-medium">
-        "{question.text[lang]}"
+      <h3 className="text-xl md:text-2xl font-chakra mt-4 mb-4 text-on-surface leading-normal text-center min-h-[120px] flex items-center justify-center font-bold px-4">
+        {question.text[lang]}
       </h3>
 
       <div className="flex flex-col gap-3">
